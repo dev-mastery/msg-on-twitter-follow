@@ -117,6 +117,10 @@ namespace Twit {
       medium: Size,
       small: Size,
     }
+    export interface Stream extends Readable {
+      start: ()=> void;
+      stop: ()=> void;
+    }
     export interface MediaEntity {
       id: number,
       id_str: string,
