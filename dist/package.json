@@ -1,0 +1,20 @@
+{
+  "name": "msg-on-twitter-follow",
+  "version": "1.0.0",
+  "description": "Simple app that follows users back and sends them a message",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Bill Sourour",
+    "email": "bill@devmastery.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "moment": "^2.13.0",
+    "twit": "^2.2.4"
+  }
+}
