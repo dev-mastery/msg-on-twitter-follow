@@ -21,7 +21,7 @@ export = {
  * When a user follows you, follow them back and send a message
  * 
  * @param {string} [msg] - the message to send. 
- * Defaults to `Hi ${user.name}, thanks for following me. I hope you're having a great ${dayOfWeek}!`; 
+ * Defaults to `Hey ${user.name.split(' ')[0]} thanks for the follow!  I hope you're having an awesome ${dayOfWeek}. Feel free to DM me if you ever wanna chat.`; 
  */
 function startMessagingNewFollowers(msg?: string): void {
     getUserStream().on('follow', onFollow);
@@ -51,12 +51,12 @@ function followUser(user: Twit.Twitter.User): void {
  * 
  * @param {Twit.Twitter.User} user - the user to message
  * @param {string} [msg] - the message to send. 
- * Defaults to `Hi ${firstName}, thanks for following me! I hope you're having a great ${dayOfWeek}.`; 
+ * Defaults to `Hey ${user.name.split(' ')[0]} thanks for the follow!  I hope you're having an awesome ${dayOfWeek}. Feel free to DM me if you ever wanna chat.`
  */
 function sendMessage(user: Twit.Twitter.User, msg?: string) {
     let offset: number = adjustOffset(user.utc_offset);
     let dayOfWeek: string = getDayOfWeek(offset);
-    msg = msg || `Hi ${user.name.split(' ')[0]}, thanks for following me! I hope you're having a great ${dayOfWeek}.`;
+    msg = msg || `Hey ${user.name.split(' ')[0]} thanks for the follow!  I hope you're having an awesome ${dayOfWeek}. Feel free to DM me if you ever wanna chat.`;
     getT().post('direct_messages/new', { screen_name: user.screen_name, text: msg });
 }
 
