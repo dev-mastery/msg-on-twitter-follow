@@ -276,11 +276,6 @@ namespace Twit {
       query?: string,
       max_id_str?: string
     }
-    // See https://github.com/ttezel/twit
-     export interface Stream extends Readable {
-      start: ()=> void;
-      stop: ()=> void;
-    }
   }
 
   export interface Response {
@@ -335,6 +330,11 @@ namespace Twit {
     timeout_ms?: number,
     trusted_cert_fingerprints?: string[],
   }
+      // See https://github.com/ttezel/twit
+     export interface Stream extends Readable {
+      start: ()=> void;
+      stop: ()=> void;
+    }
 }
 
 class Twit {

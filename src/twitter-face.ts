@@ -4,7 +4,7 @@ import Twit = require('twit');
 import moment = require('moment');
 
 let T: Twit,
-    stream: Twit.Twitter.Stream;
+    stream: Twit.Stream;
 
 // grab all the secrets
 env.config();
@@ -106,11 +106,11 @@ function getT(): Twit {
  * Gets a user stream from the Twitter Streaming API
  * @private 
  * 
- * @returns {Twit.Twitter.Stream} - a user stream
+ * @returns {Twit.Stream} - a user stream
  */
-function getUserStream(): Twit.Twitter.Stream {
+function getUserStream(): Twit.Stream {
     if (!stream) {
-        stream = <Twit.Twitter.Stream>getT().stream("user")
+        stream = <Twit.Stream>getT().stream("user")
     }
     return stream;
 }
