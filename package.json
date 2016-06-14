@@ -1,5 +1,5 @@
 {
-  "name": "twitback-dm",
+  "name": "msg-on-twitter-follow",
   "version": "1.0.0",
   "description": "Simple app that follows users back and sends them a message",
   "main": "index.js",
