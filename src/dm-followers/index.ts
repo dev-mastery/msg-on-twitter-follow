@@ -77,7 +77,6 @@ function getDayOfWeek(utcOffset: number): string {
     let weekdays: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     // get the day that it is for the user following me (0=Sunday, 6=Saturday)
     let dayIndex: number = moment(new Date()).utcOffset(utcOffset).day();
-    console.log(utcOffset)
     // get the name of the day of the week
     return weekdays[dayIndex];
 }
@@ -91,7 +90,6 @@ function getDayOfWeek(utcOffset: number): string {
 function getT(): Twit {
     // if we don't already have a Twit instance
     if (!T) {
-        console.log("T set");
         T = new Twit({
             consumer_key: process.env.T_CONSUMER_KEY,
             consumer_secret: process.env.T_CONSUMER_SECRET,
