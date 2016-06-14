@@ -1,12 +1,15 @@
 {
   "name": "twitback-dm",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple app that follows users back and sends them a message",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": {
+    "name": "Bill Sourour",
+    "email": "bill@devmastery.com"
+  },
   "license": "MIT",
   "dependencies": {
     "dotenv": "^2.0.0",
