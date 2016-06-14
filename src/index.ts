@@ -1,4 +1,4 @@
 'use strict';
-import twitterFace = require('./twitter-face');
+import dmFollowers = require('./dm-followers/');
 
-twitterFace.startMessagingNewFollowers();
+dmFollowers.startMessagingNewFollowers();
