@@ -4,6 +4,7 @@
   "description": "Simple app that follows users back and sends them a message",
   "main": "app.js",
   "scripts": {
+    "start": "node app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
