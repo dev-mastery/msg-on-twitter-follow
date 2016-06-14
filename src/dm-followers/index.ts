@@ -54,9 +54,11 @@ function followUser(user: Twit.Twitter.User): void {
  * Defaults to `Hey ${user.name.split(' ')[0]} thanks for the follow!  I hope you're having an awesome ${dayOfWeek}. Feel free to DM me if you ever wanna chat.`
  */
 function sendMessage(user: Twit.Twitter.User, msg?: string) {
-    let offset: number = adjustOffset(user.utc_offset);
-    let dayOfWeek: string = getDayOfWeek(offset);
-    msg = msg || `Hey ${user.name.split(' ')[0]} thanks for the follow!  I hope you're having an awesome ${dayOfWeek}. Feel free to DM me if you ever wanna chat.`;
+    let offset: number = adjustOffset(user.utc_offset),
+        dayOfWeek: string = getDayOfWeek(offset),
+        firstName = user.name.split(' ')[0];
+        
+    msg = msg || eval(<string>process.env.T_GREETING);
     getT().post('direct_messages/new', { screen_name: user.screen_name, text: msg });
 }
 
@@ -111,14 +113,14 @@ function getT(): Twit {
  */
 function adjustOffset(utcOffsetInSeconds: number): number {
     // convert utc offset from seconds to minutes (don't divide 0!)
-    let offset = (utcOffsetInSeconds !== 0) ? utcOffsetInSeconds / 60 : utcOffsetInSeconds; 
-     
+    let offset = (utcOffsetInSeconds !== 0) ? utcOffsetInSeconds / 60 : utcOffsetInSeconds;
+
     // momentjs interprets values between -16 and 16 as hours instead of minutes. So we adjust accordingly. 
     // I don't think this will ever happen, because offsets are generally not expressed 
     // to this degree of precision. But, just in case, this *hack* is precise enough for our purposes (for now).
-    if(offset >= -16 || offset <= 16) {
+    if (offset >= -16 || offset <= 16) {
         offset = 0;
-    } 
+    }
     return offset;
 }
 
