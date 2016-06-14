@@ -117,10 +117,7 @@ namespace Twit {
       medium: Size,
       small: Size,
     }
-    export interface Stream extends Readable {
-      start: ()=> void;
-      stop: ()=> void;
-    }
+
     export interface MediaEntity {
       id: number,
       id_str: string,
@@ -278,6 +275,11 @@ namespace Twit {
       since_id_str?: string,
       query?: string,
       max_id_str?: string
+    }
+    // See https://github.com/ttezel/twit
+     export interface Stream extends Readable {
+      start: ()=> void;
+      stop: ()=> void;
     }
   }
 
