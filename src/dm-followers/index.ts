@@ -54,7 +54,8 @@ function followUser(user: Twit.Twitter.User): void {
  * Defaults to `Hi ${firstName}, thanks for following me! I hope you're having a great ${dayOfWeek}.`; 
  */
 function sendMessage(user: Twit.Twitter.User, msg?: string) {
-    let dayOfWeek: string = getDayOfWeek(user.utc_offset);
+    let offset: number = adjustOffset(user.utc_offset);
+    let dayOfWeek: string = getDayOfWeek(offset);
     msg = msg || `Hi ${user.name.split(' ')[0]}, thanks for following me! I hope you're having a great ${dayOfWeek}.`;
     getT().post('direct_messages/new', { screen_name: user.screen_name, text: msg });
 }
@@ -67,25 +68,23 @@ function stopMessagingNewFollowers(): void {
 }
 
 /**
- * Gets the current day of the week for a given UTC offset
- * @private
+ * Gets a user stream from the Twitter Streaming API
+ * @private 
  * 
- * @param {number} utcOffset - the offset to apply to the date
- * @returns {string} - full name of the current weekday for the given UTC offset
+ * @returns {Twit.Stream} - a user stream
  */
-function getDayOfWeek(utcOffset: number): string {
-    let weekdays: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    // get the day that it is for the user following me (0=Sunday, 6=Saturday)
-    let dayIndex: number = moment(new Date()).utcOffset(utcOffset).day();
-    // get the name of the day of the week
-    return weekdays[dayIndex];
+function getUserStream(): Twit.Stream {
+    if (!stream) {
+        stream = <Twit.Stream>getT().stream("user")
+    }
+    return stream;
 }
 
 /**
  * Gets an instance of Twit
  * @private
  * 
- * @returns {Twit} an instance of Twit
+ * @returns {Twit} - an instance of Twit
  */
 function getT(): Twit {
     // if we don't already have a Twit instance
@@ -101,15 +100,39 @@ function getT(): Twit {
     return T;
 }
 
+
 /**
- * Gets a user stream from the Twitter Streaming API
- * @private 
+ * Helper function for working with momentjs that 
+ * converts a utc offset from seconds to minutes and avoids hours.
+ * @private
  * 
- * @returns {Twit.Stream} - a user stream
+ * @param {number} utcOffsetInSeconds - the utc offset in seconds, as provided by Twitter
+ * @returns {number} - the UTC offset in minutes. 
  */
-function getUserStream(): Twit.Stream {
-    if (!stream) {
-        stream = <Twit.Stream>getT().stream("user")
-    }
-    return stream;
+function adjustOffset(utcOffsetInSeconds: number): number {
+    // convert utc offset from seconds to minutes (don't divide 0!)
+    let offset = (utcOffsetInSeconds !== 0) ? utcOffsetInSeconds / 60 : utcOffsetInSeconds; 
+     
+    // momentjs interprets values between -16 and 16 as hours instead of minutes. So we adjust accordingly. 
+    // I don't think this will ever happen, because offsets are generally not expressed 
+    // to this degree of precision. But, just in case, this *hack* is precise enough for our purposes (for now).
+    if(offset >= -16 || offset <= 16) {
+        offset = 0;
+    } 
+    return offset;
+}
+
+/**
+ * Gets the current day of the week for a given UTC offset
+ * @private
+ * 
+ * @param {number} utcOffset - the offset to apply to the date
+ * @returns {string} - full name of the current weekday for the given UTC offset
+ */
+function getDayOfWeek(utcOffset: number): string {
+    let weekdays: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    // get the day that it is for the user following me (0=Sunday, 6=Saturday)
+    let dayIndex: number = moment().utcOffset(utcOffset).day();
+    // get the name of the day of the week
+    return weekdays[dayIndex];
 }
