@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "twit": "registry:npm/twit#2.0.0+20160422171648"
+  },
+  "globalDependencies": {
+    "dotenv": "registry:dt/dotenv#2.0.0+20160327131627",
+    "moment": "registry:dt/moment#2.8.0+20160316155526",
+    "moment-node": "registry:dt/moment-node#2.11.1+20160511043338",
+    "node": "registry:dt/node#6.0.0+20160613154055"
+  }
+}

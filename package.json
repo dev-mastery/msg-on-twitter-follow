@@ -1,0 +1,16 @@
+{
+  "name": "twitback-dm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "moment": "^2.13.0",
+    "twit": "^2.2.4"
+  }
+}
