@@ -7,7 +7,7 @@ import moment = require('moment');
 let T: Twit,
     stream: Twit.Stream;
 
-// grab all the secrets
+// grab all environment variables (including the very secret, hush, hush ones)
 env.config();
 
 export = {
@@ -21,7 +21,8 @@ export = {
  * When a user follows you, follow them back and send a message
  * 
  * @param {string} [msg] - the message to send. 
- * Defaults to `Hey ${user.name.split(' ')[0]} thanks for the follow!  I hope you're having an awesome ${dayOfWeek}. Feel free to DM me if you ever wanna chat.`; 
+ * Defaults to the environment variable: `process.env.T_GREETING`.
+ * Can also use merge tags in the form, `%FIELD_NAME%`
  */
 function startMessagingNewFollowers(msg?: string): void {
     getUserStream().on('follow', onFollow);
@@ -38,7 +39,7 @@ function startMessagingNewFollowers(msg?: string): void {
 }
 
 /**
- * Follows a user
+ * Follows a user.
  * 
  * @param {Twit.Twitter.User} user - the user to follow.
  */
@@ -51,15 +52,14 @@ function followUser(user: Twit.Twitter.User): void {
  * 
  * @param {Twit.Twitter.User} user - the user to message
  * @param {string} [msg] - the message to send. 
- * Defaults to `Hey ${user.name.split(' ')[0]} thanks for the follow!  I hope you're having an awesome ${dayOfWeek}. Feel free to DM me if you ever wanna chat.`
+ * Defaults to the environment variable: `process.env.T_GREETING`.
+ * Can also use merge tags in the form, `%FIELD_NAME%`
  */
 function sendMessage(user: Twit.Twitter.User, msg?: string) {
-    let offset: number = adjustOffset(user.utc_offset),
-        dayOfWeek: string = getDayOfWeek(offset),
-        firstName = user.name.split(' ')[0];
-        
-    msg = msg || eval(<string>process.env.T_GREETING);
-    getT().post('direct_messages/new', { screen_name: user.screen_name, text: msg });
+    let mergedMessage: string;
+    msg = msg || <string>process.env.T_GREETING;
+    mergedMessage = mergeMessage(user, msg);
+    getT().post('direct_messages/new', { screen_name: user.screen_name, text: mergedMessage });
 }
 
 /**
@@ -67,6 +67,35 @@ function sendMessage(user: Twit.Twitter.User, msg?: string) {
  */
 function stopMessagingNewFollowers(): void {
     getUserStream().stop();
+}
+
+/**
+ * Merges user details into the message by using merge tags in the form,
+ * `%FIELD_NAME%` where `FIELD_NAME` is one of
+ * `DAY_OF_WEEK`, `FIRST_NAME`, or the upper case form of any Twitter User field
+ * found at: https://dev.twitter.com/overview/api/users
+ * @private
+ * 
+ * @param {Twit.Twitter.User} user - a Twitter user whose details you'd like to include in a message.
+ * @param {string} msg - the message into which you wish to merge user details.
+ */
+function mergeMessage(user: Twit.Twitter.User, msg: string): string {
+    let mergedMessage = msg;
+    if (msg.indexOf("%DAY_OF_WEEK%") > -1) {
+        let offset: number = adjustOffset(user.utc_offset),
+            dayOfWeek: string = getDayOfWeek(offset);
+        mergedMessage.replace("%DAY_OF_WEEK%", dayOfWeek);
+    }
+    
+    if(msg.indexOf("%FIRST_NAME%") > -1) {
+        let firstName = user.name.split(' ')[0];
+        mergedMessage.replace("%FIRST_NAME%", firstName);
+    }
+    
+    // map merge tags to user fields.
+    Object.keys(user).forEach(v => mergedMessage.replace(`%${v.toUpperCase()}%`, user[v]));
+    
+    return mergedMessage;
 }
 
 /**
@@ -102,7 +131,6 @@ function getT(): Twit {
     return T;
 }
 
-
 /**
  * Helper function for working with momentjs that 
  * converts a utc offset from seconds to minutes and avoids hours.
@@ -116,7 +144,7 @@ function adjustOffset(utcOffsetInSeconds: number): number {
     let offset = (utcOffsetInSeconds !== 0) ? utcOffsetInSeconds / 60 : utcOffsetInSeconds;
 
     // momentjs interprets values between -16 and 16 as hours instead of minutes. So we adjust accordingly. 
-    // I don't think this will ever happen, because offsets are generally not expressed 
+    // I don't think this will ever happen because offsets are generally not expressed 
     // to this degree of precision. But, just in case, this *hack* is precise enough for our purposes (for now).
     if (offset >= -16 || offset <= 16) {
         offset = 0;
@@ -131,10 +159,10 @@ function adjustOffset(utcOffsetInSeconds: number): number {
  * @param {number} utcOffset - the offset to apply to the date
  * @returns {string} - full name of the current weekday for the given UTC offset
  */
-function getDayOfWeek(utcOffset: number): string {
+function getDayOfWeek(utcOffsetInMinutes: number): string {
     let weekdays: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     // get the day that it is for the user following me (0=Sunday, 6=Saturday)
-    let dayIndex: number = moment().utcOffset(utcOffset).day();
+    let dayIndex: number = moment().utcOffset(utcOffsetInMinutes).day();
     // get the name of the day of the week
     return weekdays[dayIndex];
 }
