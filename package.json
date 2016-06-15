@@ -4,6 +4,7 @@
   "description": "Simple app that follows users back and sends them a message",
   "main": "app.js",
   "scripts": {
+    "build": "mkdir dist",
     "start": "node './dist/app'"
   },
   "author": {
