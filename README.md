@@ -19,13 +19,12 @@ See [nodejs.org](https://nodejs.org) for instructions.
 
 ###Setup
 
-Modify the `.env` file to include your username and Twitter App keys.
+Modify the `.env` file to include your username, message, and Twitter App keys.
 
 ###Run
 
     git clone https://github.com/dev-mastery/msg-on-twitter-follow.git
-    cd msg-on-twitter-follow/src
+    cd msg-on-twitter-follow
     tsc
-    cd ../dist
     npm install
     npm start
