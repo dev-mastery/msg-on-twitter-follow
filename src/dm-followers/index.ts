@@ -84,16 +84,16 @@ function mergeMessage(user: Twit.Twitter.User, msg: string): string {
     if (msg.indexOf("%DAY_OF_WEEK%") > -1) {
         let offset: number = adjustOffset(user.utc_offset),
             dayOfWeek: string = getDayOfWeek(offset);
-        mergedMessage.replace("%DAY_OF_WEEK%", dayOfWeek);
+        mergedMessage = mergedMessage.replace("%DAY_OF_WEEK%", dayOfWeek);
     }
     
     if(msg.indexOf("%FIRST_NAME%") > -1) {
         let firstName = user.name.split(' ')[0];
-        mergedMessage.replace("%FIRST_NAME%", firstName);
+        mergedMessage = mergedMessage.replace("%FIRST_NAME%", firstName);
     }
     
     // map merge tags to user fields.
-    Object.keys(user).forEach(v => mergedMessage.replace(`%${v.toUpperCase()}%`, user[v]));
+    Object.keys(user).forEach(v => mergedMessage = mergedMessage.replace(`%${v.toUpperCase()}%`, user[v]));
     
     return mergedMessage;
 }
