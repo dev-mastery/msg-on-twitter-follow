@@ -19,7 +19,15 @@ See [nodejs.org](https://nodejs.org) for instructions.
 
 ###Setup
 
-Modify the `.env` file to include your username, message, and Twitter App keys.
+Create a `.env` file in the root directory, using your own info, with the following structure:
+
+    T_MY_NAME = AwesomeTwit
+    T_GREETING = Hey %FIRST_NAME%, thanks for the follow! I hope you're having an awesome %DAY_OF_WEEK%. Message me any time!
+    T_CONSUMER_KEY = XXX
+    T_CONSUMER_SECRET = XXX
+    T_ACCESS_TOKEN = XXX
+    T_ACCESS_TOKEN_SECRET = XXX
+    
 
 ###Run
 
