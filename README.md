@@ -4,7 +4,7 @@ A simple app that follows users back and sends them a direct message on Twitter.
 
 **PLEASE NOTE:** This app was made for training and demo purposes, please do not use in a real production environment.
 
-###Prerequisites
+##Prerequisites
 **Twitter App Account**
 
 See [Twitter Apps](http://apps.twitter.com) for instructions.
@@ -17,7 +17,7 @@ See [nodejs.org](https://nodejs.org) for instructions.
 
 `npm install -g typescript`
 
-###Setup
+##Setup
 
 Create a `.env` file in the root directory, using your own info, with the following structure:
 
@@ -27,9 +27,10 @@ Create a `.env` file in the root directory, using your own info, with the follow
     T_CONSUMER_SECRET = XXX
     T_ACCESS_TOKEN = XXX
     T_ACCESS_TOKEN_SECRET = XXX
-    
 
-###Run
+For more info on `.env` see [dotenv](https://www.npmjs.com/package/dotenv)
+
+##Run
 
     git clone https://github.com/dev-mastery/msg-on-twitter-follow.git
     cd msg-on-twitter-follow
