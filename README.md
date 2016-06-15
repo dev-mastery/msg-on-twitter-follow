@@ -36,4 +36,6 @@ For more info on `.env` see [dotenv](https://www.npmjs.com/package/dotenv)
     cd msg-on-twitter-follow
     tsc
     npm install
+    touch ".env"
+    #edit your .env file
     npm start
