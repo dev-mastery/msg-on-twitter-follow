@@ -3,9 +3,10 @@
 This app monitors your Twitter feed. When someone new follows you on Twitter, 
 it automatically follows them back and sends them a welcome message. 
 
-You can configure the message to send using Merge Tags like:
+You can configure the message to send using Merge Tags in the form `%FIELD_NAME%` like:
 `%DAY_OF_WEEK%`, `%FIRST_NAME%`, or the upper case version of any field available 
-on the [Twitter User resource](https://dev.twitter.com/overview/api/users).
+on the [Twitter User resource](https://dev.twitter.com/overview/api/users) enclosed in `%` symbols 
+(e.g. `%SCREEN_NAME%`).
 
 <a name="prereqs"></a>
 
