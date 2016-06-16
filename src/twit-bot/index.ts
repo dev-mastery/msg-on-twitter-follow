@@ -22,7 +22,9 @@ export = {
  * 
  * @param {string} [msg] - the message to send. 
  * Defaults to the environment variable: `process.env.T_GREETING`.
- * Can also use merge tags in the form, `%FIELD_NAME%`
+ * Can also use merge tags in the form, `%FIELD_NAME%` where `FIELD_NAME` is one of:
+ * `DAY_OF_WEEK`, `FIRST_NAME`, or the upper case form of any Twitter User field
+ * found at: https://dev.twitter.com/overview/api/users
  */
 function startMessagingNewFollowers(msg?: string): void {
     getUserStream().on('follow', onFollow);

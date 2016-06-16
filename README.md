@@ -30,10 +30,60 @@ Your `.env` file should have the following structure (with your own info, of cou
 For more info on `.env` see [dotenv](https://www.npmjs.com/package/dotenv)
 
 ##Run
+Before running the following commands, please ensure you have followed the Prerequisites and Setup instructions!
 
     git clone https://github.com/dev-mastery/msg-on-twitter-follow.git
     cd msg-on-twitter-follow
-    #edit dotenv-sample.txt and rename to .env as per setup instructions
     tsc
     npm install
     npm start
+
+<a name="module_twitBot"></a>
+## twitBot API
+
+* [twitBot](#module_twitBot)
+    * [~startMessagingNewFollowers([msg])](#module_twitBot..startMessagingNewFollowers)
+    * [~followUser(user)](#module_twitBot..followUser)
+    * [~sendMessage(user, [msg])](#module_twitBot..sendMessage)
+    * [~stopMessagingNewFollowers()](#module_twitBot..stopMessagingNewFollowers)
+
+<a name="module_twitBot..startMessagingNewFollowers"></a>
+
+### twitBot~startMessagingNewFollowers([msg])
+When a user follows you, follow them back and send a message
+
+**Kind**: inner method of <code>[twitBot](#module_twitBot)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [msg] | <code>string</code> | the message to send. Defaults to the environment variable: `process.env.T_GREETING`. Can also use merge tags in the form, `%FIELD_NAME%` where `FIELD_NAME` is one of: `DAY_OF_WEEK`, `FIRST_NAME`, or the upper case form of any Twitter User field found at: https://dev.twitter.com/overview/api/users |
+
+<a name="module_twitBot..followUser"></a>
+
+### twitBot~followUser(user)
+Follows a user.
+
+**Kind**: inner method of <code>[twitBot](#module_twitBot)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| user | <code>Twit.Twitter.User</code> | the user to follow. |
+
+<a name="module_twitBot..sendMessage"></a>
+
+### twitBot~sendMessage(user, [msg])
+Sends a direct message (DM) to a user.
+
+**Kind**: inner method of <code>[twitBot](#module_twitBot)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| user | <code>Twit.Twitter.User</code> | the user to message |
+| [msg] | <code>string</code> | the message to send. Defaults to the environment variable: `process.env.T_GREETING`. Can also use merge tags in the form, `%FIELD_NAME%` |
+
+<a name="module_twitBot..stopMessagingNewFollowers"></a>
+
+### twitBot~stopMessagingNewFollowers()
+Stops tracking new followers
+
+**Kind**: inner method of <code>[twitBot](#module_twitBot)</code>  
