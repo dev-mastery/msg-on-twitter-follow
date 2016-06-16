@@ -43,8 +43,10 @@ Your `.env` file should have the following structure (with your own info, of cou
 For more info on `.env` see [dotenv](https://www.npmjs.com/package/dotenv)
 
 ##Run
-Before running the following commands, please ensure you have the [prerequisites](#prereqs) and have followed the [setup instructions](#setup-instructions)! 
-From the cloned directory. 
+Before running the following commands, please ensure you have all the [prerequisites](#prereqs) and that you have 
+followed the [setup instructions](#setup-instructions)! 
+
+From the cloned directory: 
 
     tsc
     npm install
