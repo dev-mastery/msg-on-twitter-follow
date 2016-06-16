@@ -17,7 +17,7 @@ See [nodejs.org](https://nodejs.org) for instructions.
 
 ##Setup
 
-Edit the included `dotenv-sample.txt` file and save it as `.env` in the root directory
+Edit the included `dotenv-sample.txt` file and save it as `.env` in the root directory. 
 Your `.env` file should have the following structure (with your own info, of course):
 
     T_MY_NAME = YourTwitterUsername
