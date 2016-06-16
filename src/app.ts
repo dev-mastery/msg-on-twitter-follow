@@ -1,3 +1,3 @@
 'use strict';
-import dmFollowers = require('./dm-followers/');
-dmFollowers.startMessagingNewFollowers();
+import twitBot = require('./twit-bot/');
+twitBot.startMessagingNewFollowers();

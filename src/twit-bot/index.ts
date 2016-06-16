@@ -1,4 +1,4 @@
-/** @module dmFollowers  */
+/** @module twitBot  */
 'use strict';
 import env = require('dotenv');
 import Twit = require('twit');
