@@ -1,0 +1,6 @@
+T_MY_NAME = YourTwitterUsername
+T_GREETING = default message to send when someone follows you
+T_CONSUMER_KEY = Your Twitter API Consumer Key
+T_CONSUMER_SECRET = Your Twitter API Consumer Secret
+T_ACCESS_TOKEN = Your Twitter API Access Token
+T_ACCESS_TOKEN_SECRET = Your Twitter API Access Token Secret

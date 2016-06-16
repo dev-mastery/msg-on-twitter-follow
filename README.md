@@ -2,8 +2,6 @@
 
 A simple app that follows users back and sends them a direct message on Twitter.
 
-**PLEASE NOTE:** This app was made for training and demo purposes, please do not use in a real production environment.
-
 ##Prerequisites
 **Twitter App Account**
 
@@ -19,14 +17,15 @@ See [nodejs.org](https://nodejs.org) for instructions.
 
 ##Setup
 
-Create a `.env` file in the root directory, using your own info, with the following structure:
+Edit the included `dotenv-sample.txt` file and save it as `.env` in the root directory
+Your `.env` file should have the following structure (with your own info, of course):
 
-    T_MY_NAME = AwesomeTwit
-    T_GREETING = Hey %FIRST_NAME%, thanks for the follow! I hope you're having an awesome %DAY_OF_WEEK%. Message me any time!
-    T_CONSUMER_KEY = XXX
-    T_CONSUMER_SECRET = XXX
-    T_ACCESS_TOKEN = XXX
-    T_ACCESS_TOKEN_SECRET = XXX
+    T_MY_NAME = YourTwitterUsername
+    T_GREETING = default message to send when someone follows you
+    T_CONSUMER_KEY = Your Twitter API Consumer Key
+    T_CONSUMER_SECRET = Your Twitter API Consumer Secret
+    T_ACCESS_TOKEN = Your Twitter API Access Token
+    T_ACCESS_TOKEN_SECRET = Your Twitter API Access Token Secret
 
 For more info on `.env` see [dotenv](https://www.npmjs.com/package/dotenv)
 
@@ -34,8 +33,7 @@ For more info on `.env` see [dotenv](https://www.npmjs.com/package/dotenv)
 
     git clone https://github.com/dev-mastery/msg-on-twitter-follow.git
     cd msg-on-twitter-follow
+    #edit dotenv-sample.txt and rename to .env as per setup instructions
     tsc
     npm install
-    touch ".env"
-    #edit your .env file
     npm start
