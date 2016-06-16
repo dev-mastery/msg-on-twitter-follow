@@ -30,10 +30,11 @@ Your `.env` file should have the following structure (with your own info, of cou
 For more info on `.env` see [dotenv](https://www.npmjs.com/package/dotenv)
 
 ##Run
-Before running the following commands, please ensure you have followed the Prerequisites and Setup instructions!
+Before running the following commands, please ensure you have the Prerequisites!
 
     git clone https://github.com/dev-mastery/msg-on-twitter-follow.git
     cd msg-on-twitter-follow
+    #follow Setup instructions to create .env file.
     tsc
     npm install
     npm start
