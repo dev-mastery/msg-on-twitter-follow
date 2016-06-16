@@ -16,8 +16,11 @@ See [nodejs.org](https://nodejs.org) for instructions.
 `npm install -g typescript`
 
 ##Setup
+Clone the repo.
 
-Edit the included `dotenv-sample.txt` file and save it as `.env` in the root directory. 
+    git clone https://github.com/dev-mastery/msg-on-twitter-follow.git
+
+Edit the included `dotenv-sample.txt` file and save it as `.env` in the cloned root directory `~\msg-on-twitter-follow`. 
 Your `.env` file should have the following structure (with your own info, of course):
 
     T_MY_NAME = YourTwitterUsername
@@ -30,11 +33,9 @@ Your `.env` file should have the following structure (with your own info, of cou
 For more info on `.env` see [dotenv](https://www.npmjs.com/package/dotenv)
 
 ##Run
-Before running the following commands, please ensure you have the Prerequisites!
+Before running the following commands, please ensure you have the Prerequisites and have followed the Setup instryctions! 
+From the cloned directory. 
 
-    git clone https://github.com/dev-mastery/msg-on-twitter-follow.git
-    cd msg-on-twitter-follow
-    #follow Setup instructions to create .env file.
     tsc
     npm install
     npm start
