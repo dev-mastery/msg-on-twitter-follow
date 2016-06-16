@@ -15,6 +15,7 @@ See [nodejs.org](https://nodejs.org) for instructions.
 
 `npm install -g typescript`
 
+<a name="setup"></a>
 ##Setup
 Clone the repo.
 
@@ -33,7 +34,7 @@ Your `.env` file should have the following structure (with your own info, of cou
 For more info on `.env` see [dotenv](https://www.npmjs.com/package/dotenv)
 
 ##Run
-Before running the following commands, please ensure you have the Prerequisites and have followed the Setup instryctions! 
+Before running the following commands, please ensure you have the Prerequisites and have followed the [Setup instructions](#setup)! 
 From the cloned directory. 
 
     tsc
