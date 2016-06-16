@@ -1,6 +1,11 @@
 # msg-on-twitter-follow
 
-A simple app that follows users back and sends them a direct message on Twitter.
+This app monitors your Twitter feed. When someone new follows you on Twitter, 
+it automatically follows them back and sends them a welcome message. 
+
+You can configure the message to send using Merge Tags like:
+`%DAY_OF_WEEK%`, `%FIRST_NAME%`, or the upper case version of any field available 
+on the [Twitter User resource](https://dev.twitter.com/overview/api/users).
 
 <a name="prereqs"></a>
 
