@@ -4,7 +4,8 @@
   "description": "Simple app that follows users back and sends them a message",
   "main": "app.js",
   "scripts": {
-    "start": "node app"
+    "start": "node app",
+    "bundle": "tsc && zip -r bundle .env app.js ./node_modules ./twit-bot"
   },
   "author": {
     "name": "Bill Sourour",
@@ -15,5 +16,8 @@
     "dotenv": "^2.0.0",
     "moment": "^2.13.0",
     "twit": "^2.2.4"
+  },
+  "devDependencies": {
+    "ncp": "^2.0.0"
   }
 }
