@@ -4,18 +4,20 @@ import env = require('dotenv');
 import Twit = require('twit');
 import moment = require('moment');
 
+export = {
+    followUser, 
+    sendMessage, 
+    startMessagingNewFollowers, 
+    stopMessagingNewFollowers 
+}
+
+/////////////////////////////
+
 let T: Twit,
     stream: Twit.Stream;
 
 // grab all environment variables (including the very secret, hush, hush ones)
 env.config();
-
-export = {
-    followUser,
-    sendMessage,
-    startMessagingNewFollowers,
-    stopMessagingNewFollowers
-}
 
 /**
  * When a user follows you, follow them back and send a message
