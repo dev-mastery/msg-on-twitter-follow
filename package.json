@@ -15,7 +15,6 @@
   "dependencies": {
     "dotenv": "^2.0.0",
     "moment": "^2.13.0",
-    "moment-timezone": "^0.5.4",
     "twit": "^2.2.4"
   },
   "devDependencies": {
