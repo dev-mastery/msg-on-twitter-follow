@@ -146,8 +146,7 @@ function getT(): Twit {
 function adjustOffset(utcOffsetInSeconds: number): number {
     // convert utc offset from seconds to minutes (don't divide 0!)
     let offset = (utcOffsetInSeconds !== 0) ? utcOffsetInSeconds / 60 : utcOffsetInSeconds;
-    console.log(offset);
-
+    
     // momentjs interprets values between -16 and 16 as hours instead of minutes. So we adjust accordingly. 
     // I don't think this will ever happen because offsets are generally not expressed 
     // to this degree of precision. But, just in case, this *hack* is precise enough for our purposes (for now).
@@ -168,7 +167,6 @@ function getDayOfWeek(utcOffsetInMinutes: number): string {
     let weekdays: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     // get the day that it is for the user following me (0=Sunday, 6=Saturday)
     let dayIndex: number = moment().utc().utcOffset(utcOffsetInMinutes).day();
-    console.log(utcOffsetInMinutes);
     // get the name of the day of the week
     return weekdays[dayIndex];
 }
